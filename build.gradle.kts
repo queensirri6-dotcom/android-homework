@@ -10,14 +10,25 @@ repositories {
     mavenCentral()
 }
 
+// Matches your exact folder structure: src/main/kotlin
+sourceSets {
+    main {
+        kotlin {
+            srcDirs("src/main/kotlin")
+        }
+    }
+}
+
 dependencies {
-    implementation(kotlin("stdlib"))
+    // Explicitly declared - fixes "Cannot access built-in declaration kotlin.String" error
+    implementation("org.jetbrains.kotlin:kotlin-stdlib:1.9.23")
 }
 
 application {
     mainClass.set("MainKt")
 }
 
+// Fat JAR - packages everything into one runnable file
 tasks.jar {
     manifest {
         attributes["Main-Class"] = "MainKt"
